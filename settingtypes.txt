@@ -1,0 +1,2 @@
+# The key that players need to press to show the playerlist
+playerlist_key (Playerlist key) string sneak
