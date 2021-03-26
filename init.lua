@@ -2,8 +2,10 @@ playerlist = {
 	huds = {}
 }
 
-local playerlist_key = minetest.settings:get("playerlist_key") or "sneak"
-print(playerlist_key)
+local playerlist_key = minetest.settings:get("playerlist_key")
+if playerlist_key == "" then
+	playerlist_key = "sneak"
+end
 
 function playerlist.iterator()
 	return ipairs(minetest.get_connected_players())
