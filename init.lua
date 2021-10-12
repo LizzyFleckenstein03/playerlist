@@ -2,10 +2,7 @@ playerlist = {
 	huds = {}
 }
 
-local playerlist_key = minetest.settings:get("playerlist_key")
-if playerlist_key == "" then
-	playerlist_key = "sneak"
-end
+local playerlist_key = minetest.settings:get("playerlist_key") or "sneak"
 
 function playerlist.iterator()
 	return ipairs(minetest.get_connected_players())
@@ -29,7 +26,7 @@ controls.register_on_press(function(user, key)
 		})}
 		for i, player, color, text in playerlist.iterator() do
 			local name = player:get_player_name()
-			local ping = math.max(1, math.ceil(4 - minetest.get_player_information(name).avg_rtt * 50))
+			local ping = math.max(1, math.ceil(4 - (minetest.get_player_information(name).avg_rtt or 0) * 50))
 			table.insert(huds, user:hud_add({
 				hud_elem_type = "text",
 				position = {x = 0.5, y = 0},
